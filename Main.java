@@ -1,17 +1,19 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 private Medlem m;
+   private static ArrayList<Medlem> medlemmer;
 
     public static void main(String[] args) {
-        ArrayList<Medlem> medlemmer = new ArrayList<Medlem>();
+     medlemmer = new ArrayList<Medlem>();
 
         Medlem m = new Medlem();
         medlemmer.add(m);
         medlemmer.add(m);
 
-       Login(medlemmer);
+       Login();
 
     }
 
@@ -19,15 +21,17 @@ private Medlem m;
 
     }
 
+    
 
-    public static void Login(ArrayList<Medlem> medlemmer){
+
+    public static void Login(){
         Medlem m = null;
         Scanner console = new Scanner(System.in);
         do{
             System.out.println("Indtast medlems ID");
 
         String ID = console.next();
-        m = CheckMedlemsID(medlemmer, ID);
+        m = CheckMedlemsID(ID);
         if (m == null){
         System.out.println("Medlems ID ikke fundet!");}
         }
@@ -56,7 +60,7 @@ private Medlem m;
 
     }
 
-    public static Medlem CheckMedlemsID(ArrayList<Medlem> medlemmer, String ID){
+    public static Medlem CheckMedlemsID(String ID){
         for (Medlem m : medlemmer){
             String id = m.getID();
             if (id.equals(ID)){
