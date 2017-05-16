@@ -59,7 +59,7 @@ private Medlem m;
             }
             else
                 {
-                System.out.println("Forkert kode. Du har brugt " + forsøg + " forsøg ud af 3");
+                System.out.println("Forkert kode. Du har brugt " + forsøg + " ud af 3 forsøg");
                 if (forsøg == 3)
                 {
                     System.out.println("Medlems ID er spærret. Kontakt support");
