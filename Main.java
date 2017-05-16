@@ -27,6 +27,8 @@ private static ArrayList<Medlem> medlemmer;
             FileInputStream fileIn = new FileInputStream("medlemmer.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             medlemmer = (ArrayList<Medlem>) in.readObject();
+            in.close();
+            fileIn.close();
         }
         catch(IOException i){
             i.printStackTrace();
