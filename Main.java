@@ -1,24 +1,62 @@
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import static java.lang.Integer.parseInt;
 
+
 public class Main {
+   
 private Medlem m;
-   private static ArrayList<Medlem> medlemmer;
+private static ArrayList<Medlem> medlemmer;
 
     public static void main(String[] args) {
-     medlemmer = new ArrayList<Medlem>();
-
-        Medlem m = new Medlem();
-        medlemmer.add(m);
-        medlemmer.add(m);
+     
+       medlemmer = new ArrayList<Medlem>();
+       
+       LoadMedlemmer();
 
        Login();
 
     }
 
-    public void LoadMedlemmer(){
+      public static void LoadMedlemmer(){
+        try
+        {
+            FileInputStream fileIn = new FileInputStream("medlemmer.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            medlemmer = (ArrayList<Medlem>) in.readObject();
+        }
+        catch(IOException i){
+            i.printStackTrace();
+            return;
+
+        }
+        catch(ClassNotFoundException c){
+            System.out.println("Medlemsklassen ikke fundet. Kontakt support.");
+            c.printStackTrace();
+            return;
+
+        }
 
     }
+
+    public static void SaveMedlemmer(){
+        try {
+            FileOutputStream fileOut = new FileOutputStream("medlemmer.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(medlemmer);
+            out.close();
+            fileOut.close();
+        }
+        catch(IOException i){
+            i.printStackTrace();
+        }
+
+    }
+
+
 
 
 
