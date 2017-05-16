@@ -1,7 +1,7 @@
 import java.util.Date;
 import java.util.Random;
 
-public class Medlem {
+public class Medlem  implements java.io.Serializable {
 
    private String ID;
    private int Kode;
