@@ -1,9 +1,10 @@
 import java.util.Date;
+import java.util.Random;
 
 public class Medlem {
 
    private String ID;
-   private String Kode;
+   private int Kode;
    private String Fornavn;
    private String Efternavn;
    private String Fødselsdato;
@@ -22,7 +23,7 @@ public class Medlem {
    {
       return ID;
    }
-   public String getKode()
+   public int getKode()
    {
       return Kode;
    }
@@ -81,7 +82,7 @@ public class Medlem {
    { 
       ID = id; 
    }
-   public void setKode(String kode)
+   public void setKode(int kode)
    { 
       Kode = kode; 
    }
@@ -135,9 +136,11 @@ public class Medlem {
       Bogholder = bogholder; 
    }
 
-   public Medlem(String fornavn, String efternavn, String fødselsdato, String vejnavn, String vejnummer, int postnummer, int telefonnummer, 
+   public Medlem(int antalMedlemmer, String fornavn, String efternavn, String fødselsdato, String vejnavn, String vejnummer, int postnummer, int telefonnummer, 
    Date sidstebetalingsdato, boolean medlemsstatus, boolean checkkvinde, boolean formand, boolean bogholder)
    {
+      ID = genID(antalMedlemmer);
+      Kode = genKode();
       Fornavn = fornavn;
       Efternavn = efternavn;
       Fødselsdato = fødselsdato;
@@ -150,5 +153,29 @@ public class Medlem {
       CheckKvinde = checkkvinde;
       Formand = formand;
       Bogholder = bogholder;
+   }
+   
+   public int genKode()
+   {
+      Random r = new Random();
+      return (r.nextInt(8999)+1000);
+   }
+   public String genID(int antalMedlemmer)
+   {
+      String genID2 = "";
+      if(Formand)
+      {
+         genID2 += "F";
+      }
+      else if(Bogholder)
+      {
+         genID2 += "B";
+      }
+      else
+      {
+         genID2 += "M";
+      }
+      genID2 += (antalMedlemmer + 1);
+      return genID2;
    }
 }
