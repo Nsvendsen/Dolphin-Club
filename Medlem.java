@@ -134,21 +134,9 @@ public class Medlem {
    { 
       Bogholder = bogholder; 
    }
-/*private String ID;
-   private String Kode;
-   private String Fornavn;
-   private String Efternavn;
-   private String Fødselsdato;
-   private String Vejnavn;
-   private String Vejnummer;
-   private int Postnummer;
-   private int Telefonnummer;
-   private Date SidsteBetalingsdato;
-   private boolean MedlemsStatus;
-   private boolean CheckKvinde;
-*/
+
    public Medlem(String fornavn, String efternavn, String fødselsdato, String vejnavn, String vejnummer, int postnummer, int telefonnummer, 
-   Date sidstebetalingsdato, boolean medlemsstatus, boolean checkkvinde)
+   Date sidstebetalingsdato, boolean medlemsstatus, boolean checkkvinde, boolean formand, boolean bogholder)
    {
       Fornavn = fornavn;
       Efternavn = efternavn;
@@ -160,5 +148,7 @@ public class Medlem {
       SidsteBetalingsdato = sidstebetalingsdato;
       MedlemsStatus = medlemsstatus;
       CheckKvinde = checkkvinde;
+      Formand = formand;
+      Bogholder = bogholder;
    }
 }
