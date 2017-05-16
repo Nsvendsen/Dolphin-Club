@@ -14,6 +14,8 @@ public class Medlem {
    private Date SidsteBetalingsdato;
    private boolean MedlemsStatus;
    private boolean CheckKvinde;
+   private boolean Formand;
+   private boolean Bogholder;
    
    //her kommer get metoderne
    public String getID()
@@ -63,6 +65,14 @@ public class Medlem {
    public boolean getCheckKvinde()
    {
       return CheckKvinde;
+   }
+   public boolean getFormand()
+   {
+      return Formand;
+   }
+   public boolean getBogholder()
+   {
+      return Bogholder;
    }
 
 /* her kommer set metoderne */
@@ -114,6 +124,15 @@ public class Medlem {
    public void setCheckKvinde(boolean checkkvinde)
    { 
       CheckKvinde = checkkvinde; 
+   }
+   
+   public void setFormand(boolean formand)
+   { 
+      Formand = formand; 
+   }
+   public void setBogholder(boolean bogholder)
+   { 
+      Bogholder = bogholder; 
    }
 /*private String ID;
    private String Kode;
