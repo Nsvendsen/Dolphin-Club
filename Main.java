@@ -1,6 +1,5 @@
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import static java.lang.Integer.parseInt;
 
 public class Main {
 private Medlem m;
@@ -21,33 +20,49 @@ private Medlem m;
 
     }
 
-    
+
 
 
     public static void Login(){
         Medlem m = null;
         Scanner console = new Scanner(System.in);
-        do{
-            System.out.println("Indtast medlems ID");
-
-        String ID = console.next();
-        m = CheckMedlemsID(ID);
-        if (m == null){
-        System.out.println("Medlems ID ikke fundet!");}
+        do
+        {
+            System.out.println("Indtast medlems ID:");
+            String ID = console.next();
+            m = CheckMedlemsID(ID);
+        if (m == null)
+        {
+        System.out.println("Medlems ID ikke fundet!");
+        }
         }
         while(m == null);
+        for (int forsøg = 1; forsøg <= 3; forsøg++)
+        {
+            System.out.println("Indtast kode:");
 
-        for (int forsøg = 1; forsøg <= 3; forsøg++){
-            System.out.println("Indtast kode");
-            int kode = console.nextInt();
-            if (kode == m.getKode()){
+            int kode = 0;
+
+            try
+            {
+                kode = parseInt(console.next());
+            }
+
+            catch(NumberFormatException e)
+            {
+            }
+
+            if (kode == m.getKode())
+            {
                 break;
 
             }
-            else{
-                System.out.println("Forkert password. " + forsøg + ". forsøg ud af 3.");
-                if (forsøg == 3){
-                    System.out.println("Medlems ID er lukket. Kontakt support");
+            else
+                {
+                System.out.println("Forkert kode. Du har brugt " + forsøg + " forsøg ud af 3");
+                if (forsøg == 3)
+                {
+                    System.out.println("Medlems ID er spærret. Kontakt support");
                 }
             }
 
@@ -60,10 +75,13 @@ private Medlem m;
 
     }
 
-    public static Medlem CheckMedlemsID(String ID){
-        for (Medlem m : medlemmer){
+    public static Medlem CheckMedlemsID(String ID)
+    {
+        for (Medlem m : medlemmer)
+        {
             String id = m.getID();
-            if (id.equals(ID)){
+            if (id.equals(ID))
+            {
                 return m;
             }
 
