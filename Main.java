@@ -10,7 +10,7 @@ public class Main {
    
 private Medlem m;
    private static ArrayList<Medlem> medlemmer;
-
+   //Start methoden
     public static void main(String[] args) {
   
        
@@ -19,7 +19,7 @@ private Medlem m;
        Login();
 
     }
-
+      //methoden her loader alle medlemmer ind i en arraylist gennem objectinputstream
       public static void LoadMedlemmer(){
         try
         {
@@ -42,7 +42,7 @@ private Medlem m;
         }
 
     }
-
+   //Methoden her gemmer alle medlemmer til en file ved hjælp af obejctoutputstream så den nemt kan loades ind igen
     public static void SaveMedlemmer(){
         try {
             FileOutputStream fileOut = new FileOutputStream("medlemmer.ser");
@@ -113,7 +113,7 @@ private Medlem m;
 
 
     }
-
+   //Tjekker hele arraylisten igennem efter det medlemsID som vi kigger efter.
     public static Medlem CheckMedlemsID(String ID)
     {
         for (Medlem m : medlemmer)
