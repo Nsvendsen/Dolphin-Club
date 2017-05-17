@@ -3,7 +3,7 @@ public class Elite extends Member {
   public Elite(int antalMedlemmer, String fornavn, String efternavn, String fødselsdato, String vejnavn, String vejnummer, int postnummer, int telefonnummer, 
    Date sidstebetalingsdato, boolean medlemsstatus, boolean checkkvinde, boolean formand, boolean bogholder,String disciplin,String prioritet,long resultat)
    {
-      ID = genID(antalMedlemmer);
+      ID = genIDE(antalMedlemmer);
       Kode = genKode();
       Fornavn = fornavn;
       Efternavn = efternavn;
@@ -23,6 +23,13 @@ public class Elite extends Member {
       bedsteResultat = resultat;
    }
 
+   public String genIDE(int antalMedlemmer)
+   {
+      String genID2 = "E";
+      genID2 += (antalMedlemmer + 1);
+      return genID2;
+   }
+  
   private String aktivDisciplin;
   private String trænerPrioritet;
   private long bedsteResultat;
