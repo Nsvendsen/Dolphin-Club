@@ -9,11 +9,10 @@ import static java.lang.Integer.parseInt;
 public class Main {
    
 private Medlem m;
-
+   private static ArrayList<Medlem> medlemmer;
 
     public static void main(String[] args) {
-     
-       medlemmer = new ArrayList<Medlem>();
+  
        
        LoadMedlemmer();
 
