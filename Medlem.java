@@ -17,6 +17,7 @@ public class Medlem  implements java.io.Serializable {
    private boolean CheckKvinde;
    private boolean Formand;
    private boolean Bogholder;
+   private boolean Træner;
    
    //her kommer get metoderne
    public String getID()
@@ -74,6 +75,10 @@ public class Medlem  implements java.io.Serializable {
    public boolean getBogholder()
    {
       return Bogholder;
+   }
+   public boolean getTræner()
+   {
+      return Træner;
    }
 
 /* her kommer set metoderne */
@@ -135,6 +140,10 @@ public class Medlem  implements java.io.Serializable {
    { 
       Bogholder = bogholder; 
    }
+   public void setTræner(boolean træner)
+   {
+      Træner = træner;
+   }
 
    public Medlem(int antalMedlemmer, String fornavn, String efternavn, String fødselsdato, String vejnavn, String vejnummer, int postnummer, int telefonnummer, 
    Date sidstebetalingsdato, boolean medlemsstatus, boolean checkkvinde, boolean formand, boolean bogholder)
@@ -153,6 +162,7 @@ public class Medlem  implements java.io.Serializable {
       CheckKvinde = checkkvinde;
       Formand = formand;
       Bogholder = bogholder;
+      Træner = træner;
    }
    
    public int genKode()
@@ -170,6 +180,10 @@ public class Medlem  implements java.io.Serializable {
       else if(Bogholder)
       {
          genID2 += "B";
+      }
+      else if(Træner)
+      {
+         genID2 += "T";
       }
       else
       {
