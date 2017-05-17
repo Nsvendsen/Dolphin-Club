@@ -165,11 +165,16 @@ public class Medlem  implements java.io.Serializable {
       Træner = træner;
    }
    
+/* her genereres en kode for brugeren mellem 1000 og 9999 */
+   
    public int genKode()
    {
       Random r = new Random();
       return (r.nextInt(8999)+1000);
    }
+
+/* Her tilføjes bogstav til ID der indikere typen af bruger som enten formand, bogholder, træner eller medlem*/
+   
    public String genID(int antalMedlemmer)
    {
       String genID2 = "";
