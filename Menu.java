@@ -46,40 +46,45 @@ public class Menu {
         Scanner console = new Scanner(System.in);
         String fornavn = console.nextLine();
         System.out.println("Efternavn:");
-        String efternavn = console.next();
+        String efternavn = console.nextLine();
         String vejnavn = console.nextLine();
         System.out.println("Vej nr.:");
-        String vejnr = console.next();
+        String vejnr = console.nextLine();
         System.out.println("Post nr.:");
-        try
-        {
-            int postnr = parseInt(console.next());
-        }
-        catch(NumberFormatException n){
-            System.out.println("Postnummer indeholder ikke bogstaver. Husk at redigerer medlem efter oprettelse for at rette fejl");
+
+        int postnr = 0;
+
+        while(postnr == 0) {
+            try {
+                postnr = parseInt(console.next());
+            } catch (NumberFormatException n) {
+                System.out.println("Postnummer må ikke indeholde bogstaver.");
+                postnr = 0;
+            }
         }
 
         System.out.println("By:");
         String by = console.nextLine();
 
-        System.out.println("Tlf nr (uden mellemrum):");
 
 
+        int tlfnr = 0;
 
 
-        try
-        {
-            int tlfnr = parseInt(console.next());
-        }
-        catch(NumberFormatException n){
-            System.out.println("Tlf nr indeholder ikke bogstaver. Husk at redigerer medlem efter oprettelse for at rette fejl");
-        }
+     while(tlfnr == 0) {
+         System.out.println("Tlf nr (uden mellemrum):");
+         try {
+             tlfnr = parseInt(console.next());
+         } catch (NumberFormatException n) {
+             System.out.println("Tlf nr må ikke indeholde bogstaver eller mellemrum.");
+             tlfnr = 0;
+         }
+     }
         boolean done = false;
-        boolean kvinde;
+        boolean CheckKvinde;
         while (!done) {
-            System.out.println("Køn:");
-            System.out.println("1: mand");
-            System.out.println("2: kvinde");
+            API.Rollanimation("Køn:", "1: mand","2: kvinde");
+          
 
             String s = console.next();
 
@@ -87,19 +92,65 @@ public class Menu {
             char c = s.charAt(0);
 
             if (Character.getNumericValue(c) == 1) {
-                kvinde = false;
+                CheckKvinde = false;
                 done = true;
             }
             if (Character.getNumericValue(c) == 2) {
-                kvinde = true;
+                CheckKvinde = true;
                 done = true;
             }
 
         }
 
+        done = false;
+        String fødselsdato = "";
 
-        System.out.println("Fødselsdag (DD-MM-ÅÅÅÅ)");
-        String føldselsdag = console.next();
+        while(!done)
+
+        {
+
+            System.out.println("Fødselsdag (DD-MM-ÅÅÅÅ)");
+            String datePattern = "\\d{2}-\\d{2}-\\d{4}";
+            fødselsdato = console.next();
+            done = fødselsdato.matches(datePattern);
+        }
+
+
+
+        done = false;
+        boolean elite;
+        while (!done) {
+            API.Rollanimation("Elite:", "1: Ja", "2: Nej");
+
+            String s = console.next();
+
+
+            char c = s.charAt(0);
+
+            if (Character.getNumericValue(c) == 1) {
+                elite = true;
+                done = true;
+            }
+            if (Character.getNumericValue(c) == 2) {
+                elite = false;
+                done = true;
+            }
+
+
+
+            Medlem m1 = Main.medlemmer.get(Main.medlemmer.size() - 1);
+            String ID = m1.getID();
+            int IDmax = parseInt(ID.substring(1,ID.length()));
+
+
+
+
+
+            Medlem m2 = new Medlem(IDmax, fornavn, efternavn, fødselsdato, vejnavn, vejnr, postnr, tlfnr, )
+
+        }
+
+
 
 
 
