@@ -35,7 +35,7 @@ private Medlem m;
 
         }
         catch(ClassNotFoundException c){
-            System.out.println("Medlemsklassen ikke fundet. Kontakt support.");
+            API.Rollanimation("Medlemsklassen ikke fundet. Kontakt support.");
             c.printStackTrace();
             return;
 
@@ -67,18 +67,18 @@ private Medlem m;
         Scanner console = new Scanner(System.in);
         do
         {
-            System.out.println("Indtast medlems ID:");
+            API.Rollanimation("Indtast medlems ID:");
             String ID = console.next();
             m = CheckMedlemsID(ID);
         if (m == null)
         {
-        System.out.println("Medlems ID ikke fundet!");
+        API.Rollanimation("Medlems ID ikke fundet!");
         }
         }
         while(m == null);
         for (int forsøg = 1; forsøg <= 3; forsøg++)
         {
-            System.out.println("Indtast kode:");
+            API.Rollanimation("Indtast kode:");
 
             int kode = 0;
 
@@ -98,10 +98,10 @@ private Medlem m;
             }
             else
                 {
-                System.out.println("Forkert kode. Du har brugt " + forsøg + " ud af 3 forsøg");
+                API.Rollanimation("Forkert kode.","","Du har brugt " + forsøg + " ud af 3 forsøg");
                 if (forsøg == 3)
                 {
-                    System.out.println("Medlems ID er spærret. Kontakt support");
+                    API.Rollanimation("Medlems ID er spærret. Kontakt support");
                 }
             }
 
