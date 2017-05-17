@@ -224,7 +224,7 @@
 			while (after4.length()!=i5){
 				after4 = " "+after4;
 			}
-			if (i5 % 2 == 1){
+			if (i4 % 2 == 1){
 				before4 = before4 + " ";
 			}
 			System.out.println();
@@ -309,7 +309,7 @@
 			while (after4.length()!=i5){
 				after4 = " "+after4;
 			}
-			if (i5 % 2 == 1){
+			if (i4 % 2 == 1){
 				before4 = before4 + " ";
 			}
       
@@ -323,7 +323,7 @@
 			while (after5.length()!=i51){
 				after5 = " "+after5;
 			}
-			if (i51 % 2 == 1){
+			if (i41 % 2 == 1){
 				before5 = before5 + " ";
 			}
 			System.out.println();
