@@ -16,6 +16,7 @@ public class Medlem  implements java.io.Serializable {
     private String Vejnavn;
     private String Vejnummer;
     private int Postnummer;
+    private String By
     private int Telefonnummer;
     private Date SidsteBetalingsdato;
     private boolean MedlemsStatus;
@@ -56,6 +57,10 @@ public class Medlem  implements java.io.Serializable {
     public int getPostnummer()
     {
         return Postnummer;
+    }
+    public String getBy
+    {
+        return By
     }
     public int getTelefonnummer()
     {
@@ -120,6 +125,10 @@ public class Medlem  implements java.io.Serializable {
     {
         Postnummer = postnummer;
     }
+    public void setBy(String by)
+    {
+        By = by;
+    }
     public void setTelefonnummer(int telefonnummer)
     {
         Telefonnummer = telefonnummer;
@@ -150,7 +159,7 @@ public class Medlem  implements java.io.Serializable {
         Træner = træner;
     }
 
-    public Medlem(int antalMedlemmer, String fornavn, String efternavn, String fødselsdato, String vejnavn, String vejnummer, int postnummer, int telefonnummer, boolean checkkvinde)
+    public Medlem(int antalMedlemmer, String fornavn, String efternavn, String fødselsdato, String vejnavn, String vejnummer, int postnummer, String by, int telefonnummer, boolean checkkvinde)
     {
         ID = genID(antalMedlemmer);
         Kode = genKode();
