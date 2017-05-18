@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 import java.util.stream.Collector;
 
@@ -50,17 +51,19 @@ public class Menu {
         String vejnavn = console.nextLine();
         System.out.println("Vej nr.:");
         String vejnr = console.nextLine();
-        System.out.println("Post nr.:");
+
 
         int postnr = 0;
 
         while(postnr == 0) {
+            System.out.println("Post nr.:");
             try {
                 postnr = parseInt(console.next());
             } catch (NumberFormatException n) {
                 System.out.println("Postnummer må ikke indeholde bogstaver.");
                 postnr = 0;
             }
+
         }
 
         System.out.println("By:");
@@ -74,28 +77,28 @@ public class Menu {
      while(tlfnr == 0) {
          System.out.println("Tlf nr (uden mellemrum):");
          try {
-             tlfnr = parseInt(console.next());
+             tlfnr = parseInt(console.nextLine());
          } catch (NumberFormatException n) {
              System.out.println("Tlf nr må ikke indeholde bogstaver eller mellemrum.");
              tlfnr = 0;
          }
      }
         boolean done = false;
-        boolean CheckKvinde;
+        boolean CheckKvinde = true;
         while (!done) {
             API.Rollanimation("Køn:", "1: mand","2: kvinde");
-          
+
 
             String s = console.next();
 
 
             char c = s.charAt(0);
 
-            if (Character.getNumericValue(c) == 1) {
+            if (Character.getNumericValue(c) == 1 && s.length() == 1) {
                 CheckKvinde = false;
                 done = true;
             }
-            if (Character.getNumericValue(c) == 2) {
+            if (Character.getNumericValue(c) == 2 && s.length() == 1) {
                 CheckKvinde = true;
                 done = true;
             }
@@ -146,7 +149,9 @@ public class Menu {
 
 
 
-            Medlem m2 = new Medlem(IDmax, fornavn, efternavn, fødselsdato, vejnavn, vejnr, postnr, tlfnr, )
+            Medlem m2 = new Medlem(IDmax, fornavn, efternavn, fødselsdato, vejnavn, vejnr, postnr, tlfnr, CheckKvinde);
+            Main.medlemmer.add(m2);
+            Main.SaveMedlemmer();
 
         }
 
