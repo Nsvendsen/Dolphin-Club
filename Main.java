@@ -5,22 +5,42 @@ import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
 
-
 public class Main {
-   
-private Medlem m;
-   private static ArrayList<Medlem> medlemmer;
-   //Start methoden
+
+   public static ArrayList<Medlem> medlemmer;
+
+
     public static void main(String[] args) {
-  
-       
+
+
+        medlemmer = new ArrayList<Medlem>();
+
+
+
+
+      //Menu.OpretMedlem();
+       // SaveMedlemmer();
+
+
        LoadMedlemmer();
 
-       Login();
+
+       Medlem m = Login();
+
+
+
+       if (m.getFormand()){
+            System.out.println("Du er logget ind som formand: " + m.getFornavn() + " " + m.getEfternavn());
+           Menu.formandMenu();
+        }
+        SaveMedlemmer();
+
 
     }
-      //methoden her loader alle medlemmer ind i en arraylist gennem objectinputstream
-      public static void LoadMedlemmer(){
+
+
+
+    public static void LoadMedlemmer(){
         try
         {
             FileInputStream fileIn = new FileInputStream("medlemmer.ser");
@@ -35,14 +55,14 @@ private Medlem m;
 
         }
         catch(ClassNotFoundException c){
-            API.Rollanimation("Medlemsklassen ikke fundet. Kontakt support.");
+            System.out.println("Medlemsklassen ikke fundet. Kontakt support.");
             c.printStackTrace();
             return;
 
         }
 
     }
-   //Methoden her gemmer alle medlemmer til en file ved hjælp af obejctoutputstream så den nemt kan loades ind igen
+
     public static void SaveMedlemmer(){
         try {
             FileOutputStream fileOut = new FileOutputStream("medlemmer.ser");
@@ -60,25 +80,17 @@ private Medlem m;
 
 
 
+    public static Medlem Login(){
 
+        Medlem m = CheckMedlemsID();
 
-    public static void Login(){
-        Medlem m = null;
         Scanner console = new Scanner(System.in);
-        do
-        {
-            API.Rollanimation("Indtast medlems ID:");
-            String ID = console.next();
-            m = CheckMedlemsID(ID);
-        if (m == null)
-        {
-        API.Rollanimation("Medlems ID ikke fundet!");
-        }
-        }
-        while(m == null);
+
+
         for (int forsøg = 1; forsøg <= 3; forsøg++)
         {
-            API.Rollanimation("Indtast kode:");
+
+            System.out.println("Indtast kode:");
 
             int kode = 0;
 
@@ -93,38 +105,59 @@ private Medlem m;
 
             if (kode == m.getKode())
             {
+
                 break;
 
             }
             else
                 {
-                API.Rollanimation("Forkert kode.","","Du har brugt " + forsøg + " ud af 3 forsøg");
+                System.out.println("Forkert kode. Du har brugt " + forsøg + " ud af 3 forsøg");
                 if (forsøg == 3)
                 {
-                    API.Rollanimation("Medlems ID er spærret. Kontakt support");
+                    System.out.println("Medlems ID er spærret. Kontakt venligst support");
                 }
             }
 
 
         }
 
+        return m;
+
 
 
 
 
     }
-   //Tjekker hele arraylisten igennem efter det medlemsID som vi kigger efter.
-    public static Medlem CheckMedlemsID(String ID)
+
+    public static Medlem CheckMedlemsID()
     {
-        for (Medlem m : medlemmer)
+        boolean done = false;
+
+        Scanner console = new Scanner(System.in);
+        while (!done)
         {
-            String id = m.getID();
-            if (id.equals(ID))
+            System.out.println("Indtast medlems ID:");
+            String ID = console.next();
+            for (Medlem m : medlemmer)
             {
-                return m;
+                String id = m.getID();
+                if (id.equals(ID))
+                {
+                    return m;
+                }
+
             }
+            System.out.println("Medlems ID er ikke fundet!");
 
         }
-        return null;
+      return null;
+
+    }
+
+    public static void PrintMedlemsliste(){
+        for (Medlem m : medlemmer){
+            System.out.println(m.getID() + " " + m.getFornavn() + " " + m.getEfternavn());
+        }
     }
 }
+
