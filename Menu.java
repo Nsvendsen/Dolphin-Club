@@ -264,8 +264,33 @@ public class Menu {
 
     }
 
-    public static boolean RedigerMedlemsstatus(){
-        return false;
+   public static boolean RedigerMedlemsstatus()
+   {
+        Scanner console = new Scanner(System.in);
+
+
+        while (1 == 1) 
+        {
+            API.Rollanimation("Medlemsstatus:", "1: Aktiv","2: Passiv");
+
+
+            String s = console.next();
+
+
+            char c = s.charAt(0);
+
+            if (Character.getNumericValue(c) == 1 && s.length() == 1) 
+            {
+                return false;
+            }
+            if (Character.getNumericValue(c) == 2 && s.length() == 1) 
+            {
+                return true;
+            }
+
+        }
+
+
     }
 
     public static String RedigerMedlemsfunktion(){
