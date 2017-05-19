@@ -1,4 +1,8 @@
+package com.company;
 
+/**
+ * Created by lampe on 16-05-2017.
+ */
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
