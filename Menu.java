@@ -5,7 +5,6 @@ import java.util.stream.Collector;
 
 import static java.lang.Integer.parseInt;
 
-
 public class Menu {
 
     public static void formandMenu() {
@@ -95,18 +94,18 @@ public class Menu {
 
         while(!done){
         System.out.println("Slet medlem j/n?");
-        String s = console.nextLine();
+            String s = console.nextLine();
 
         if (s.equals("j") || s.equals("J")){
             Main.medlemmer.remove(slet);
             Main.SaveMedlemmer();
             System.out.println("Medlemmet er slettet!");
             done = true;
-        }
-        else if (!s.equals("n") && !s.equals("N")){
-            System.out.println("tast j/n");
+        } else if (s.equals("n") || s.equals("N")){
             done = true;
-        }
+
+            }
+
         }
 
         formandMenu();
@@ -264,12 +263,12 @@ public class Menu {
 
     }
 
-   public static boolean RedigerMedlemsstatus()
-   {
+    public static boolean RedigerMedlemsstatus()
+    {
         Scanner console = new Scanner(System.in);
 
 
-        while (1 == 1) 
+        while (1 == 1)
         {
             API.Rollanimation("Medlemsstatus:", "1: Aktiv","2: Passiv");
 
@@ -279,13 +278,13 @@ public class Menu {
 
             char c = s.charAt(0);
 
-            if (Character.getNumericValue(c) == 1 && s.length() == 1) 
-            {
-                return false;
-            }
-            if (Character.getNumericValue(c) == 2 && s.length() == 1) 
+            if (Character.getNumericValue(c) == 1 && s.length() == 1)
             {
                 return true;
+            }
+            if (Character.getNumericValue(c) == 2 && s.length() == 1)
+            {
+                return false;
             }
 
         }
@@ -295,33 +294,36 @@ public class Menu {
 
     public static String RedigerMedlemsfunktion()
     {
-      Scanner console = new Scanner(System.in);
-      
-      while (1 == 1) 
+        Scanner console = new Scanner(System.in);
+
+
+        while (1 == 1)
         {
 
-        API.Rollanimation("Medlemsstatus:", "1: Formand","2: Bogholder","3: Træner","4: Elite");
-        
-        char c = s.charAt(0);
-        
-        if (Character.getNumericValue(c) == 1 && s.length() == 1)
-        {
-          return "Formand";
+            API.Rollanimation("Medlemsstatus:", "1: Formand","2: Bogholder","3: Træner","4: Elite");
+            String s = console.nextLine();
+
+
+            char c = s.charAt(0);
+
+            if (Character.getNumericValue(c) == 1 && s.length() == 1)
+            {
+                return "Formand";
+            }
+            if (Character.getNumericValue(c) == 2 && s.length() == 1)
+            {
+                return "Bogholder";
+            }
+            if (Character.getNumericValue(c) == 3 && s.length() == 1)
+            {
+                return "Træner";
+            }
+            if (Character.getNumericValue(c) == 4 && s.length() == 1)
+            {
+                return "Elite";
+            }
+
         }
-        if (Character.getNumericValue(c) == 2 && s.length() == 1)
-        {
-          return "Bogholder";
-        }
-        if (Character.getNumericValue(c) == 3 && s.length() == 1)
-        {
-          return "Træner";
-        }
-        if (Character.getNumericValue(c) == 4 && s.length() == 1)
-        {
-          return "Elite";
-        }
-       
-      }
     }
 
 
@@ -383,6 +385,34 @@ public class Menu {
                         int tlfnr = RedigerTlfnr();
                         rediger.setTelefonnummer(tlfnr);
                         break;
+                    case 8:
+                        String funktion = RedigerMedlemsfunktion();
+                        if (funktion.equals("Formand")){
+                            rediger.setFormand(true);
+                            String rID = rediger.getID();
+                            String ID = "F" + rID.substring(1, rID.length());
+                           rediger.setID(ID);
+
+                        }
+                        if (funktion.equals("Bogholder")){
+                            rediger.setBogholder(true);
+                            String rID = rediger.getID();
+                            String ID = "B" + rID.substring(1, rID.length());
+                            rediger.setID(ID);
+
+                        }
+                        if (funktion.equals("Træner")){
+                            rediger.setTræner(true);
+                            String rID = rediger.getID();
+                            String ID = "T" + rID.substring(1, rID.length());
+                            rediger.setID(ID);
+
+                        }
+                        break;
+                    case 9:
+                        boolean status = RedigerMedlemsstatus();
+                        rediger.setMedlemsStatus(status);
+                        break;
                     case 11:
                         formandMenu();
                         break;
@@ -406,8 +436,5 @@ public class Menu {
 
 
     }
-
-
-
 
 
