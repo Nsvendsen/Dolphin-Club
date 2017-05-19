@@ -293,8 +293,35 @@ public class Menu {
 
     }
 
-    public static String RedigerMedlemsfunktion(){
-        return "Formand";
+    public static String RedigerMedlemsfunktion()
+    {
+      Scanner console = new Scanner(System.in);
+      
+      while (1 == 1) 
+        {
+
+        API.Rollanimation("Medlemsstatus:", "1: Formand","2: Bogholder","3: Træner","4: Elite");
+        
+        char c = s.charAt(0);
+        
+        if (Character.getNumericValue(c) == 1 && s.length() == 1)
+        {
+          return "Formand";
+        }
+        if (Character.getNumericValue(c) == 2 && s.length() == 1)
+        {
+          return "Bogholder";
+        }
+        if (Character.getNumericValue(c) == 3 && s.length() == 1)
+        {
+          return "Træner";
+        }
+        if (Character.getNumericValue(c) == 4 && s.length() == 1)
+        {
+          return "Elite";
+        }
+       
+      }
     }
 
 
