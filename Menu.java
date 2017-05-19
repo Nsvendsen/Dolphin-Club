@@ -5,6 +5,7 @@ import java.util.stream.Collector;
 
 import static java.lang.Integer.parseInt;
 
+
 public class Menu {
 
     public static void formandMenu() {
@@ -14,7 +15,7 @@ public class Menu {
 
         while (!done) {
 
-            API.Rollanimation("Vælg følgende:", "1: Opret medlem", "2: Slet medlem", "3: Rediger medlem", "4: Afslut");
+            API.Rollanimation("Vælg følgende:", "1: Opret medlem", "2: Slet medlem", "3: Rediger medlem", "4: Log af");
 
 
             Scanner console = new Scanner(System.in);
@@ -28,11 +29,18 @@ public class Menu {
                 done = true;
             }
             if (Character.getNumericValue(c) == 2 && s.length() == 1) {
-                // SletMedlem();
+                SletMedlem();
                 done = true;
             }
             if (Character.getNumericValue(c) == 3 && s.length() == 1) {
                 RedigerMedlem();
+                done = true;
+
+
+            }
+            if (Character.getNumericValue(c) == 4 && s.length() == 1) {
+                System.out.println("Du er nu logget af");
+                Main.Login();
                 done = true;
 
             }
@@ -60,10 +68,48 @@ public class Menu {
 
         Medlem nyt = new Medlem(IDmax, fornavn, efternavn, fødselsdato, vejnavn, vejnr, postnr, by, tlfnr, CheckKvinde);
 
+        System.out.println("Medlem er oprettet");
+
+        System.out.println();
+
+        System.out.println(nyt);
+
         System.out.println("ID: " + nyt.getID());
         System.out.println("Kode: " + nyt.getKode());
 
        Main.medlemmer.add(nyt);
+        Main.SaveMedlemmer();
+
+        formandMenu();
+
+    }
+
+    public static void SletMedlem(){
+        Main.PrintMedlemsliste();
+        System.out.println();
+        Medlem slet = Main.CheckMedlemsID();
+        System.out.println(slet);
+
+        Scanner console = new Scanner(System.in);
+        boolean done = false;
+
+        while(!done){
+        System.out.println("Slet medlem j/n?");
+        String s = console.nextLine();
+
+        if (s.equals("j") || s.equals("J")){
+            Main.medlemmer.remove(slet);
+            Main.SaveMedlemmer();
+            System.out.println("Medlemmet er slettet!");
+            done = true;
+        }
+        else if (!s.equals("n") && !s.equals("N")){
+            System.out.println("tast j/n");
+            done = true;
+        }
+        }
+
+        formandMenu();
 
     }
 
@@ -228,79 +274,88 @@ public class Menu {
 
 
 
-    public static void RedigerMedlem(){
+    public static void RedigerMedlem() {
 
         Main.PrintMedlemsliste();
         System.out.println();
         Medlem rediger = Main.CheckMedlemsID();
-        System.out.println(rediger);
-        System.out.println();
-        System.out.println("Vælg at redigerer:");
-        System.out.println("1: Fornavn, 2: Efternavn, 3: Vejnavn, 4: Vejnummer, 5: Postnummer, 6: By, 7: Telefonnummer");
-        System.out.println("8: Medlemsfunktion, 9: Medlemsstatus, 10: Fødselsdato, 11: Gå tilbage");
 
-        Scanner console = new Scanner(System.in);
-        boolean done = true;
+        while (1 == 1) {
+            System.out.println(rediger);
+            System.out.println();
+            System.out.println("Vælg at redigere:");
+            System.out.println("1: Fornavn, 2: Efternavn, 3: Vejnavn, 4: Vejnummer, 5: Postnummer, 6: By, 7: Telefonnummer");
+            System.out.println("8: Medlemsfunktion, 9: Medlemsstatus, 10: Fødselsdato, 11: Gå tilbage");
 
-        do {
-           done = true;
-            int valgt = 0;
+            Scanner console = new Scanner(System.in);
+            boolean done = true;
 
-
-            try {
-                valgt = parseInt(console.next());
-            }
-            catch(NumberFormatException e){
-
-            }
+            do {
+                done = true;
+                int valgt = 0;
 
 
+                try {
+                    valgt = parseInt(console.next());
+                } catch (NumberFormatException e) {
 
-            switch (valgt) {
-                case 1:
-                    String fornavn = RedigerFornavn();
-                    rediger.setFornavn(fornavn);
-                    break;
-                case 2:
-                    String efternavn = RedigerEfternavn();
-                    rediger.setEfternavn(efternavn);
-                    break;
-                case 3:
-                    String vejnavn = RedigerVejNavn();
-                    rediger.setVejnavn(vejnavn);
-                    break;
-                case 4:
-                    String vejnr = RedigerVejnr();
-                    rediger.setVejnummer(vejnr);
-                    break;
-                case 5:
-                    int postnr = RedigerPostnr();
-                    rediger.setPostnummer(postnr);
-                    break;
-                case 6:
-                    String by = RedigerBy();
-                    rediger.setBy(by);
-                    break;
-                case 7:
-                    int tlfnr = RedigerTlfnr();
-                    rediger.setTelefonnummer(tlfnr);
-                    break;
-                default:
-                    System.out.println("Ikke gyldigt valg (tast 1-11)");
-                    done = false;
-                    break;
-            }
+                }
 
-        } while(done == false);
 
-          System.out.println(rediger);
+                switch (valgt) {
+                    case 1:
+                        String fornavn = RedigerFornavn();
+                        rediger.setFornavn(fornavn);
+                        break;
+                    case 2:
+                        String efternavn = RedigerEfternavn();
+                        rediger.setEfternavn(efternavn);
+                        break;
+                    case 3:
+                        String vejnavn = RedigerVejNavn();
+                        rediger.setVejnavn(vejnavn);
+                        break;
+                    case 4:
+                        String vejnr = RedigerVejnr();
+                        rediger.setVejnummer(vejnr);
+                        break;
+                    case 5:
+                        int postnr = RedigerPostnr();
+                        rediger.setPostnummer(postnr);
+                        break;
+                    case 6:
+                        String by = RedigerBy();
+                        rediger.setBy(by);
+                        break;
+                    case 7:
+                        int tlfnr = RedigerTlfnr();
+                        rediger.setTelefonnummer(tlfnr);
+                        break;
+                    case 11:
+                        formandMenu();
+                        break;
+                    default:
+                        System.out.println("Ikke gyldigt valg (tast 1-11)");
+                        done = false;
+                        break;
+                }
+                Main.SaveMedlemmer();
+
+            } while (!done);
+
+
+
+
 
         }
+    }
 
 
 
 
     }
+
+
 
 
 
