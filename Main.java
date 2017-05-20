@@ -1,4 +1,5 @@
 
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,26 +17,26 @@ public class Main {
         medlemmer = new ArrayList<Medlem>();
 
 
+        //Menu.OpretMedlem();
+        // SaveMedlemmer();
 
 
-      //Menu.OpretMedlem();
-       // SaveMedlemmer();
+        LoadMedlemmer();
+
+        while (1 == 1) {
 
 
-       LoadMedlemmer();
+            Medlem m = Login();
 
 
-       Medlem m = Login();
+            if (m.getFormand()) {
+                System.out.println("Du er logget ind som formand: " + m.getFornavn() + " " + m.getEfternavn());
+                Menu.formandMenu();
+            }
+            SaveMedlemmer();
 
 
-
-       if (m.getFormand()){
-            System.out.println("Du er logget ind som formand: " + m.getFornavn() + " " + m.getEfternavn());
-           Menu.formandMenu();
         }
-        SaveMedlemmer();
-
-
     }
 
 
@@ -160,4 +161,3 @@ public class Main {
         }
     }
 }
-
