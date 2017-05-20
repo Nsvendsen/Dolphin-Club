@@ -1,48 +1,64 @@
 
 
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.stream.Collector;
 
 import static java.lang.Integer.parseInt;
+
 
 public class Menu {
 
     public static void formandMenu() {
 
 
-        boolean done = false;
 
-        while (!done) {
+        boolean menu = true;
 
-            API.Rollanimation("Vælg følgende:", "1: Opret medlem", "2: Slet medlem", "3: Rediger medlem", "4: Log af");
+        while (menu) {
+
+            boolean done = false;
+
+            while (!done) {
 
 
-            Scanner console = new Scanner(System.in);
 
-            String s = console.next();
+                API.Rollanimation("Vælg følgende:", "1: Opret medlem", "2: Slet medlem", "3: Rediger medlem", "4: Log af");
 
-            char c = s.charAt(0);
 
-            if (Character.getNumericValue(c) == 1 && s.length() == 1) {
-                OpretMedlem();
-                done = true;
+                Scanner console = new Scanner(System.in);
+
+                String s = console.next();
+
+                char c = s.charAt(0);
+
+                if (Character.getNumericValue(c) == 1 && s.length() == 1) {
+                    OpretMedlem();
+                    done = true;
+                }
+                if (Character.getNumericValue(c) == 2 && s.length() == 1) {
+                    SletMedlem();
+                    done = true;
+                }
+                if (Character.getNumericValue(c) == 3 && s.length() == 1) {
+                    RedigerMedlem();
+                    done = true;
+
+
+                }
+                if (Character.getNumericValue(c) == 4 && s.length() == 1) {
+
+                    for (int i = 1; i < 20; i++) {
+                        System.out.println();
+                    }
+                    System.out.println("Du er nu logget af");
+                    done = true;
+                    menu = false;
+
+                }
             }
-            if (Character.getNumericValue(c) == 2 && s.length() == 1) {
-                SletMedlem();
-                done = true;
-            }
-            if (Character.getNumericValue(c) == 3 && s.length() == 1) {
-                RedigerMedlem();
-                done = true;
 
 
-            }
-            if (Character.getNumericValue(c) == 4 && s.length() == 1) {
-                System.out.println("Du er nu logget af");
-                Main.Login();
-                done = true;
-
-            }
         }
     }
 
@@ -79,7 +95,6 @@ public class Menu {
        Main.medlemmer.add(nyt);
         Main.SaveMedlemmer();
 
-        formandMenu();
 
     }
 
@@ -108,7 +123,6 @@ public class Menu {
 
         }
 
-        formandMenu();
 
     }
 
@@ -333,8 +347,9 @@ public class Menu {
         Main.PrintMedlemsliste();
         System.out.println();
         Medlem rediger = Main.CheckMedlemsID();
+        boolean menu = true;
 
-        while (1 == 1) {
+        while (menu) {
             System.out.println(rediger);
             System.out.println();
             System.out.println("Vælg at redigere:");
@@ -345,7 +360,6 @@ public class Menu {
             boolean done = true;
 
             do {
-                done = true;
                 int valgt = 0;
 
 
@@ -413,8 +427,12 @@ public class Menu {
                         boolean status = RedigerMedlemsstatus();
                         rediger.setMedlemsStatus(status);
                         break;
+                    case 10:
+                        String fødselsdato = RedigerFødselsdato();
+                        rediger.setFødselsdato(fødselsdato);
+                        break;
                     case 11:
-                        formandMenu();
+                        menu = false;
                         break;
                     default:
                         System.out.println("Ikke gyldigt valg (tast 1-11)");
@@ -424,6 +442,8 @@ public class Menu {
                 Main.SaveMedlemmer();
 
             } while (!done);
+
+
 
 
 
