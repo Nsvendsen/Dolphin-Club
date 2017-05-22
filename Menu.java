@@ -83,7 +83,7 @@ public class Menu {
         Medlem nyt = null;
         if (elite){
             String aktivdisciplin = redigerAktivDisciplin();
-            Elite nyt = new Medlem(IDmax, fornavn, efternavn, fødselsdato, vejnavn, vejnr, postnr, by, tlfnr, CheckKvinde);
+            Elite nyt = new Elite(IDmax, fornavn, efternavn, fødselsdato, vejnavn, vejnr, postnr, by, tlfnr, CheckKvinde,aktivdisciplin,null,null);
              System.out.println("Elitemedlem er oprettet");
         }else{
           Medlem nyt = new Medlem(IDmax, fornavn, efternavn, fødselsdato, vejnavn, vejnr, postnr, by, tlfnr, CheckKvinde);  
