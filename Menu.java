@@ -23,6 +23,8 @@ public class Menu {
                         System.out.println();
                     }
                     System.out.println("Du er nu logget af");
+                }else{
+                    System.out.println("Kommer i en senere version.");
                 }
     }
     
@@ -41,6 +43,8 @@ public class Menu {
                         System.out.println();
                     }
                     System.out.println("Du er nu logget af");
+                }else{
+                    System.out.println("Kommer i en senere version.");
                 }
     }
     
@@ -59,6 +63,8 @@ public class Menu {
                         System.out.println();
                     }
                     System.out.println("Du er nu logget af");
+                }else{
+                    System.out.println("Kommer i en senere version.");
                 }
     }
     
