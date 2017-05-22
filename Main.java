@@ -1,4 +1,4 @@
-
+package com.company;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,47 +15,64 @@ public class Main {
 
 
         medlemmer = new ArrayList<Medlem>();
+        Medlem m = null;
 
 
-        //Menu.OpretMedlem();
-        // SaveMedlemmer();
+     //   Menu.OpretMedlem();
+     //   SaveMedlemmer();
+
+    boolean firstRun = LoadMedlemmer();
+
+        if (firstRun){
+
+            System.out.println("Velkommen til Dolphi. Indtast det bruger ID og kode der følger med manualen,");
+            System.out.println("for at oprette dig selv som formand med administrator rettigheder.");
+            System.out.println("Husk at gemme ny kode og nyt bruger ID");
+
+            m = Login(true);
 
 
-        LoadMedlemmer();
+            Menu.OpretMedlem(true);
+        }
+
 
         while (1 == 1) {
 
 
-            Medlem m = Login();
+            m = Login(false);
+if(!m.getSpærret()) {
+
+    if (m.getFormand()) {
+        System.out.println("Du er logget ind som formand: " + m.getFornavn() + " " + m.getEfternavn());
+        Menu.formandMenu();
+    } else if (m.getBogholder()) {
+        System.out.println("Du er logget ind som bogholder: " + m.getFornavn() + " " + m.getEfternavn());
+        Menu.bogholderMenu();
+    } else if (m.getTræner()) {
+        System.out.println("Du er logget ind som træner: " + m.getFornavn() + " " + m.getEfternavn());
+        Menu.trænerMenu();
+    } else if (m instanceof Elite) {
+        System.out.println("Du er logget ind som elitemedlem: " + m.getFornavn() + " " + m.getEfternavn());
+        Menu.eliteMenu();
+    } else {
+        System.out.println("Du er logget ind som medlem: " + m.getFornavn() + " " + m.getEfternavn());
+        System.out.println("Goddag, og velkommen til.");
+        System.out.println("Hav en god svømmetur.");
+        System.out.println("Vandet er nu 27 grader varmt.");
+        SaveMedlemmer();
 
 
-            if (m.getFormand()) {
-                System.out.println("Du er logget ind som formand: " + m.getFornavn() + " " + m.getEfternavn());
-                Menu.formandMenu();
-            }else (m.getBogholder()){
-                System.out.println("Du er logget ind som bogholder: " + m.getFornavn() + " " + m.getEfternavn());
-                Menu.bogholderMenu();
-            }else (m.getTræner()){
-                System.out.println("Du er logget ind som træner: " + m.getFornavn() + " " + m.getEfternavn());
-                Menu.trænerMenu();
-            }else (m instanceof Elite)){
-                System.out.println("Du er logget ind som elitemedlem: " + m.getFornavn() + " " + m.getEfternavn());
-                Menu.eliteMenu();
-            }else{
-               System.out.println("Du er logget ind som medlem: " + m.getFornavn() + " " + m.getEfternavn());
-               System.out.println("Goddag, og velkommen til.");
-               System.out.println("Hav en god svømmetur.");
-               System.out.println("Vandet er nu 27 grader varmt.");
-            }
-            SaveMedlemmer();
+    }
 
-
-        }
+}
+    }
     }
 
 
 
-    public static void LoadMedlemmer(){
+
+    public static boolean LoadMedlemmer(){
+        boolean firstRun = false;
         try
         {
             FileInputStream fileIn = new FileInputStream("medlemmer.ser");
@@ -65,16 +82,17 @@ public class Main {
             fileIn.close();
         }
         catch(IOException i){
-            i.printStackTrace();
-            return;
+            firstRun = true;
+
 
         }
         catch(ClassNotFoundException c){
-            System.out.println("Medlemsklassen ikke fundet. Kontakt support.");
-            c.printStackTrace();
-            return;
+           firstRun = true;
+
 
         }
+
+        return firstRun;
 
     }
 
@@ -95,45 +113,75 @@ public class Main {
 
 
 
-    public static Medlem Login(){
-
-        Medlem m = CheckMedlemsID();
+    public static Medlem Login(boolean firstRun){
 
         Scanner console = new Scanner(System.in);
+        Medlem m = null;
+        int kode = 0;
 
+        if (firstRun) {
+            String ID = "DEAFAULTID01";
+            boolean done = false;
 
-        for (int forsøg = 1; forsøg <= 3; forsøg++)
-        {
-
-            System.out.println("Indtast kode:");
-
-            int kode = 0;
-
-            try
-            {
-                kode = parseInt(console.next());
-            }
-
-            catch(NumberFormatException e)
-            {
-            }
-
-            if (kode == m.getKode())
-            {
-
-                break;
-
-            }
-            else
-                {
-                System.out.println("Forkert kode. Du har brugt " + forsøg + " ud af 3 forsøg");
-                if (forsøg == 3)
-                {
-                    System.out.println("Medlems ID er spærret. Kontakt venligst support");
+            while (!done) {
+                System.out.println("Indtast bruger ID:");
+                if (ID.equals(console.nextLine())) {
+                    done = true;
+                }else{
+                    System.out.println("Forkert bruger ID!");
                 }
             }
+            done = false;
+            while (!done) {
+                System.out.println("Indtast kode:");
+                try {
+                    kode = parseInt(console.next());
+                } catch (NumberFormatException e) {
+                }
+                if (kode == 1203) {
+                    done = true;
+                }else{
+                    System.out.println("Forkert kode!");
+                }
+
+            }
+        }else {
+
+            m = CheckMedlemsID();
 
 
+            if (m.getSpærret()) {
+                System.out.println("Medlems ID er spærret. Kontakt venligst support!.");
+            } else {
+
+
+                for (int forsøg = 1; forsøg <= 3; forsøg++) {
+
+
+                    System.out.println("Indtast kode:");
+
+
+                    try {
+                        kode = parseInt(console.next());
+                    } catch (NumberFormatException e) {
+                    }
+
+                    if (kode == m.getKode()) {
+
+                        break;
+
+                    }
+
+                    System.out.println("Forkert kode. Du har brugt " + forsøg + " ud af 3 forsøg");
+                    if (forsøg == 3) {
+
+                        m.setSpærret(true);
+                        System.out.println("Medlems ID er spærret. Kontakt venligst support!");
+                    }
+                }
+
+
+            }
         }
 
         return m;

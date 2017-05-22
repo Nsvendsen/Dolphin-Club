@@ -1,4 +1,4 @@
-
+package com.company;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -6,68 +6,11 @@ import java.util.stream.Collector;
 
 import static java.lang.Integer.parseInt;
 
-
+/**
+ * Created by lampe on 17-05-2017.
+ */
 public class Menu {
-    
-    public static void bogholderMenu() {
-    
-    API.Rollanimation("Vælg følgende:", "1: Sene betalinger", "2: Register betaling", "3: Log af");
-        Scanner console = new Scanner(System.in);
 
-                String s = console.next();
-
-                char c = s.charAt(0);
-                if (Character.getNumericValue(c) == 4 && s.length() == 1) {
-
-                    for (int i = 1; i < 20; i++) {
-                        System.out.println();
-                    }
-                    System.out.println("Du er nu logget af");
-                }else{
-                    System.out.println("Kommer i en senere version.");
-                }
-    }
-    
-    public static void trænerMenu() {
-    
-    API.Rollanimation("Vælg følgende:", "1: Top 5", "2: Register resultat", "3: Log af");
-        
-        Scanner console = new Scanner(System.in);
-
-                String s = console.next();
-
-                char c = s.charAt(0);
-                if (Character.getNumericValue(c) == 4 && s.length() == 1) {
-
-                    for (int i = 1; i < 20; i++) {
-                        System.out.println();
-                    }
-                    System.out.println("Du er nu logget af");
-                }else{
-                    System.out.println("Kommer i en senere version.");
-                }
-    }
-    
-     public static void eliteMenu() {
-    
-    API.Rollanimation("Vælg følgende:", "1: Register prioritet af træner", "2: Register resultat", "3: Log af");
-        
-        Scanner console = new Scanner(System.in);
-
-                String s = console.next();
-
-                char c = s.charAt(0);
-                if (Character.getNumericValue(c) == 4 && s.length() == 1) {
-
-                    for (int i = 1; i < 20; i++) {
-                        System.out.println();
-                    }
-                    System.out.println("Du er nu logget af");
-                }else{
-                    System.out.println("Kommer i en senere version.");
-                }
-    }
-    
     public static void formandMenu() {
 
 
@@ -92,7 +35,7 @@ public class Menu {
                 char c = s.charAt(0);
 
                 if (Character.getNumericValue(c) == 1 && s.length() == 1) {
-                    OpretMedlem();
+                    OpretMedlem(false);
                     done = true;
                 }
                 if (Character.getNumericValue(c) == 2 && s.length() == 1) {
@@ -121,7 +64,66 @@ public class Menu {
         }
     }
 
-    public static void OpretMedlem(){
+    public static void bogholderMenu() {
+
+        API.Rollanimation("Vælg følgende:", "1: Sene betalinger", "2: Register betaling", "3: Log af");
+        Scanner console = new Scanner(System.in);
+
+        String s = console.next();
+
+        char c = s.charAt(0);
+        if (Character.getNumericValue(c) == 4 && s.length() == 1) {
+
+            for (int i = 1; i < 20; i++) {
+                System.out.println();
+            }
+            System.out.println("Du er nu logget af");
+        }else{
+            System.out.println("Kommer i en senere version.");
+        }
+    }
+
+    public static void trænerMenu() {
+
+        API.Rollanimation("Vælg følgende:", "1: Top 5", "2: Register resultat", "3: Log af");
+
+        Scanner console = new Scanner(System.in);
+
+        String s = console.next();
+
+        char c = s.charAt(0);
+        if (Character.getNumericValue(c) == 4 && s.length() == 1) {
+
+            for (int i = 1; i < 20; i++) {
+                System.out.println();
+            }
+            System.out.println("Du er nu logget af");
+        }else{
+            System.out.println("Kommer i en senere version.");
+        }
+    }
+
+    public static void eliteMenu() {
+
+        API.Rollanimation("Vælg følgende:", "1: Register prioritet af træner", "2: Register resultat", "3: Log af");
+
+        Scanner console = new Scanner(System.in);
+
+        String s = console.next();
+
+        char c = s.charAt(0);
+        if (Character.getNumericValue(c) == 4 && s.length() == 1) {
+
+            for (int i = 1; i < 20; i++) {
+                System.out.println();
+            }
+            System.out.println("Du er nu logget af");
+        }else{
+            System.out.println("Kommer i en senere version.");
+        }
+    }
+
+    public static void OpretMedlem(boolean firstRun){
 
         String fornavn = RedigerFornavn();
         String efternavn = RedigerEfternavn();
@@ -133,20 +135,33 @@ public class Menu {
         boolean CheckKvinde = RedigerKøn();
         String fødselsdato = RedigerFødselsdato();
         boolean elite = RedigerElite();
-        
+        int IDmax = 1000;
 
-      Medlem m1 = Main.medlemmer.get(Main.medlemmer.size() - 1);
-        String ID = m1.getID();
-        int IDmax = parseInt(ID.substring(1,ID.length()));
-        
+
+        if(!firstRun) {
+            Medlem m1 = Main.medlemmer.get(Main.medlemmer.size() - 1);
+            String ID = m1.getID();
+            IDmax = parseInt(ID.substring(1, ID.length()));
+        }
+
+        System.out.println("Medlem er oprettet");
+        System.out.println();
+
         Medlem nyt = null;
         if (elite){
             String aktivdisciplin = redigerAktivDisciplin();
-            Elite nyt = new Elite(IDmax, fornavn, efternavn, fødselsdato, vejnavn, vejnr, postnr, by, tlfnr, CheckKvinde,aktivdisciplin,null,null);
-             System.out.println("Elitemedlem er oprettet");
+            nyt = (Medlem)new Elite(IDmax, fornavn, efternavn, fødselsdato, vejnavn, vejnr, postnr, by, tlfnr, CheckKvinde, aktivdisciplin);
+            System.out.println("Elitemedlem er oprettet");
         }else{
-          Medlem nyt = new Medlem(IDmax, fornavn, efternavn, fødselsdato, vejnavn, vejnr, postnr, by, tlfnr, CheckKvinde);  
-             System.out.println("Medlem er oprettet");
+            nyt = new Medlem(IDmax, fornavn, efternavn, fødselsdato, vejnavn, vejnr, postnr, by, tlfnr, CheckKvinde);
+            System.out.println("Medlem er oprettet");
+        }
+
+        if(firstRun){
+            nyt.setFormand(true);
+            String ID = nyt.getID();
+            ID = ID.replace('M','F');
+            nyt.setID(ID);
         }
         System.out.println();
 
@@ -155,9 +170,15 @@ public class Menu {
         System.out.println("ID: " + nyt.getID());
         System.out.println("Kode: " + nyt.getKode());
 
-       Main.medlemmer.add(nyt);
+        Main.medlemmer.add(nyt);
         Main.SaveMedlemmer();
+    }
 
+    public static String redigerAktivDisciplin(){
+        Scanner console = new Scanner(System.in);
+        System.out.println("Aktiv disciplin:");
+
+        return console.nextLine();
 
     }
 
@@ -177,7 +198,7 @@ public class Menu {
         if (s.equals("j") || s.equals("J")){
             Main.medlemmer.remove(slet);
             Main.SaveMedlemmer();
-            System.out.println("Medlemmet er slettet!");
+            System.out.println("Medlem er slettet!");
             done = true;
         } else if (s.equals("n") || s.equals("N")){
             done = true;
@@ -186,14 +207,6 @@ public class Menu {
 
         }
 
-
-    }
-    
-      public static String redigerAktivDisciplin(){
-        Scanner console = new Scanner(System.in);
-        System.out.println("Aktiv disciplin:");
-
-        return console.nextLine();
 
     }
 

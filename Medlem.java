@@ -25,6 +25,9 @@ public class Medlem  implements java.io.Serializable {
     private boolean Formand;
     private boolean Bogholder;
     private boolean Træner;
+    private boolean spærret;
+
+    private static final long serialVersionUID = 1L;
 
     //her kommer get metoderne
     public String getID() {
@@ -85,6 +88,9 @@ public class Medlem  implements java.io.Serializable {
 
     public boolean getTræner() {
         return Træner;
+    }
+    public boolean getSpærret(){
+        return spærret;
     }
 
 /* her kommer set metoderne */
@@ -152,6 +158,9 @@ public class Medlem  implements java.io.Serializable {
     public void setTræner(boolean træner) {
         Træner = træner;
     }
+    public void setSpærret(boolean spærret){
+        this.spærret = spærret;
+    }
 
     public Medlem(int antalMedlemmer, String fornavn, String efternavn, String fødselsdato, String vejnavn, String vejnummer, int postnummer, String by, int telefonnummer, boolean checkkvinde) {
         Formand = false;
@@ -171,6 +180,7 @@ public class Medlem  implements java.io.Serializable {
         CheckKvinde = checkkvinde;
         Date nu = new Date();
         SidsteBetalingsdato = nu;
+        spærret = false;
 
 
     }
