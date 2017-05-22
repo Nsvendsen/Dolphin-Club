@@ -74,17 +74,21 @@ public class Menu {
         boolean CheckKvinde = RedigerKøn();
         String fødselsdato = RedigerFødselsdato();
         boolean elite = RedigerElite();
-
+        
 
       Medlem m1 = Main.medlemmer.get(Main.medlemmer.size() - 1);
         String ID = m1.getID();
         int IDmax = parseInt(ID.substring(1,ID.length()));
-
-
-        Medlem nyt = new Medlem(IDmax, fornavn, efternavn, fødselsdato, vejnavn, vejnr, postnr, by, tlfnr, CheckKvinde);
-
-        System.out.println("Medlem er oprettet");
-
+        
+        Medlem nyt = null;
+        if (elite){
+            String aktivdisciplin = redigerAktivDisciplin();
+            Elite nyt = new Medlem(IDmax, fornavn, efternavn, fødselsdato, vejnavn, vejnr, postnr, by, tlfnr, CheckKvinde);
+             System.out.println("Elitemedlem er oprettet");
+        }else{
+          Medlem nyt = new Medlem(IDmax, fornavn, efternavn, fødselsdato, vejnavn, vejnr, postnr, by, tlfnr, CheckKvinde);  
+             System.out.println("Medlem er oprettet");
+        }
         System.out.println();
 
         System.out.println(nyt);
@@ -123,6 +127,14 @@ public class Menu {
 
         }
 
+
+    }
+    
+      public static String redigerAktivDisciplin(){
+        Scanner console = new Scanner(System.in);
+        System.out.println("Aktiv disciplin:");
+
+        return console.nextLine();
 
     }
 
