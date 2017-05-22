@@ -8,7 +8,60 @@ import static java.lang.Integer.parseInt;
 
 
 public class Menu {
+    
+    public static void bogholderMenu() {
+    
+    API.Rollanimation("Vælg følgende:", "1: Sene betalinger", "2: Register betaling", "3: Log af");
+        Scanner console = new Scanner(System.in);
 
+                String s = console.next();
+
+                char c = s.charAt(0);
+                if (Character.getNumericValue(c) == 4 && s.length() == 1) {
+
+                    for (int i = 1; i < 20; i++) {
+                        System.out.println();
+                    }
+                    System.out.println("Du er nu logget af");
+                }
+    }
+    
+    public static void trænerMenu() {
+    
+    API.Rollanimation("Vælg følgende:", "1: Top 5", "2: Register resultat", "3: Log af");
+        
+        Scanner console = new Scanner(System.in);
+
+                String s = console.next();
+
+                char c = s.charAt(0);
+                if (Character.getNumericValue(c) == 4 && s.length() == 1) {
+
+                    for (int i = 1; i < 20; i++) {
+                        System.out.println();
+                    }
+                    System.out.println("Du er nu logget af");
+                }
+    }
+    
+     public static void eliteMenu() {
+    
+    API.Rollanimation("Vælg følgende:", "1: Register prioritet af træner", "2: Register resultat", "3: Log af");
+        
+        Scanner console = new Scanner(System.in);
+
+                String s = console.next();
+
+                char c = s.charAt(0);
+                if (Character.getNumericValue(c) == 4 && s.length() == 1) {
+
+                    for (int i = 1; i < 20; i++) {
+                        System.out.println();
+                    }
+                    System.out.println("Du er nu logget af");
+                }
+    }
+    
     public static void formandMenu() {
 
 
