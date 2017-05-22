@@ -32,6 +32,20 @@ public class Main {
             if (m.getFormand()) {
                 System.out.println("Du er logget ind som formand: " + m.getFornavn() + " " + m.getEfternavn());
                 Menu.formandMenu();
+            }else (m.getBogholder()){
+                System.out.println("Du er logget ind som bogholder: " + m.getFornavn() + " " + m.getEfternavn());
+                Menu.bogholderMenu();
+            }else (m.getTræner()){
+                System.out.println("Du er logget ind som træner: " + m.getFornavn() + " " + m.getEfternavn());
+                Menu.trænerMenu();
+            }else (m instanceof Elite)){
+                System.out.println("Du er logget ind som elitemedlem: " + m.getFornavn() + " " + m.getEfternavn());
+                Menu.eliteMenu();
+            }else{
+               System.out.println("Du er logget ind som medlem: " + m.getFornavn() + " " + m.getEfternavn());
+               System.out.println("Goddag, og velkommen til.");
+               System.out.println("Hav en god svømmetur.");
+               System.out.println("Vandet er nu 27 grader varmt.");
             }
             SaveMedlemmer();
 
