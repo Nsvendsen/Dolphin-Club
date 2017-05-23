@@ -1,14 +1,9 @@
-package com.company;
-
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.stream.Collector;
 
 import static java.lang.Integer.parseInt;
 
-/**
- * Created by lampe on 17-05-2017.
- */
 public class Menu {
 
     public static void formandMenu() {
