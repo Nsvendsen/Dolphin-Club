@@ -1,8 +1,8 @@
-import java.io.IOException;
-import java.util.Scanner;
-import java.util.stream.Collector;
+        import java.io.IOException;
+        import java.util.Scanner;
+        import java.util.stream.Collector;
 
-import static java.lang.Integer.parseInt;
+        import static java.lang.Integer.parseInt;
 
 public class Menu {
 
@@ -98,7 +98,7 @@ public class Menu {
         }
     }
 
-    public static void eliteMenu(Medlem m) {
+    public static void eliteMenu(Elite m) {
 
         API.Rollanimation("Vælg følgende:", "1: Register prioritet af træner", "2: Register resultat", "3: Log af");
 
@@ -108,11 +108,11 @@ public class Menu {
 
         char c = s.charAt(0);
         if (Character.getNumericValue(c) == 1 && s.length() == 1) {
-                m.setTrænerPrioritet(redigerPrioritet());
-            
+            m.setTrænerPrioritet(redigerPrioritet());
+
         }else if (Character.getNumericValue(c) == 2 && s.length() == 1) {
-                m.setBedsteResultat(redigerResultat());
-            
+            m.setBedsteResultat(redigerResultat());
+
         }else if (Character.getNumericValue(c) == 3 && s.length() == 1) {
 
             for (int i = 1; i < 20; i++) {
@@ -123,7 +123,7 @@ public class Menu {
             System.out.println("Kommer i en senere version.");
         }
     }
-    
+
     public static String redigerPrioritet(){
         Scanner console = new Scanner(System.in);
         System.out.println("Første prioritet:");
@@ -135,7 +135,7 @@ public class Menu {
         return s;
 
     }
-    
+
     public static String redigerResultat(){
         Scanner console = new Scanner(System.in);
         String s = "";
@@ -144,28 +144,28 @@ public class Menu {
             System.out.println("Indtast din tid i formattet hh:mm:ss");
             s = console.nextLine();
             String[] ssplit = s.split(":");
-                if (ssplit.length != 3){
-                    System.out.println("Du har ikke indtastet en korrekt tid");
-                }else{
-                    done = true;
-                }
+            if (ssplit.length != 3){
+                System.out.println("Du har ikke indtastet en korrekt tid");
+            }else{
+                done = true;
+            }
         }
         done = false;
         while (!done){
             System.out.println("Indtast hvornår tiden var sat i formattet dd/mm/yy");
             s = s+" "+console.nextLine();
             String[] ssplit = s.split("/");
-                if (ssplit.length != 3){
-                    System.out.println("Du har ikke indtastet en korrekt tid");
-                }else{
-                    done = true;
-                }
+            if (ssplit.length != 3){
+                System.out.println("Du har ikke indtastet en korrekt tid");
+            }else{
+                done = true;
+            }
         }
-        
+
         return s;
 
     }
-    
+
 
     public static void OpretMedlem(boolean firstRun){
 
@@ -187,7 +187,7 @@ public class Menu {
             String ID = m1.getID();
             IDmax = parseInt(ID.substring(1, ID.length()));
         }
-        
+
         System.out.println();
 
         Medlem nyt = null;
@@ -235,16 +235,16 @@ public class Menu {
         boolean done = false;
 
         while(!done){
-        System.out.println("Slet medlem j/n?");
+            System.out.println("Slet medlem j/n?");
             String s = console.nextLine();
 
-        if (s.equals("j") || s.equals("J")){
-            Main.medlemmer.remove(slet);
-            Main.SaveMedlemmer();
-            System.out.println("Medlem er slettet!");
-            done = true;
-        } else if (s.equals("n") || s.equals("N")){
-            done = true;
+            if (s.equals("j") || s.equals("J")){
+                Main.medlemmer.remove(slet);
+                Main.SaveMedlemmer();
+                System.out.println("Medlem er slettet!");
+                done = true;
+            } else if (s.equals("n") || s.equals("N")){
+                done = true;
 
             }
 
@@ -532,7 +532,7 @@ public class Menu {
                             rediger.setFormand(true);
                             String rID = rediger.getID();
                             String ID = "F" + rID.substring(1, rID.length());
-                           rediger.setID(ID);
+                            rediger.setID(ID);
 
                         }
                         if (funktion.equals("Bogholder")){
@@ -582,6 +582,5 @@ public class Menu {
 
 
 
-    }
-
+}
 
