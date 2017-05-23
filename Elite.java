@@ -23,7 +23,7 @@ public class Elite extends Medlem {
 
     private String aktivDisciplin;
     private String trænerPrioritet;
-    private long bedsteResultat;
+    private String bedsteResultat;
 
     //Get metoder
     public String getAktivDisciplin(){
@@ -34,7 +34,7 @@ public class Elite extends Medlem {
         return trænerPrioritet;
     }
 
-    public long getBedsteResultat(){
+    public String getBedsteResultat(){
         return bedsteResultat;
     }
 
@@ -47,7 +47,7 @@ public class Elite extends Medlem {
         trænerPrioritet = prioritet;
     }
 
-    public void setBedsteResultat(long resultat){
+    public void setBedsteResultat(String resultat){
         bedsteResultat = resultat;
     }
 
