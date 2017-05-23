@@ -156,6 +156,7 @@ public class Menu {
             nyt.setFormand(true);
             String ID = nyt.getID();
             ID = ID.replace('M','F');
+             ID = ID.replace('E', 'F');
             nyt.setID(ID);
         }
         System.out.println();
