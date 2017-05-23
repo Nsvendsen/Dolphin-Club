@@ -67,7 +67,7 @@ public class Menu {
         String s = console.next();
 
         char c = s.charAt(0);
-        if (Character.getNumericValue(c) == 4 && s.length() == 1) {
+        if (Character.getNumericValue(c) == 3 && s.length() == 1) {
 
             for (int i = 1; i < 20; i++) {
                 System.out.println();
@@ -87,7 +87,7 @@ public class Menu {
         String s = console.next();
 
         char c = s.charAt(0);
-        if (Character.getNumericValue(c) == 4 && s.length() == 1) {
+        if (Character.getNumericValue(c) == 3 && s.length() == 1) {
 
             for (int i = 1; i < 20; i++) {
                 System.out.println();
@@ -98,7 +98,7 @@ public class Menu {
         }
     }
 
-    public static void eliteMenu() {
+    public static void eliteMenu(Medlem m) {
 
         API.Rollanimation("Vælg følgende:", "1: Register prioritet af træner", "2: Register resultat", "3: Log af");
 
@@ -107,7 +107,13 @@ public class Menu {
         String s = console.next();
 
         char c = s.charAt(0);
-        if (Character.getNumericValue(c) == 4 && s.length() == 1) {
+        if (Character.getNumericValue(c) == 1 && s.length() == 1) {
+                m.setTrænerPrioritet(redigerPrioritet());
+            
+        }else if (Character.getNumericValue(c) == 2 && s.length() == 1) {
+                m.setBedsteResultat(redigerResultat());
+            
+        }else if (Character.getNumericValue(c) == 3 && s.length() == 1) {
 
             for (int i = 1; i < 20; i++) {
                 System.out.println();
@@ -117,6 +123,49 @@ public class Menu {
             System.out.println("Kommer i en senere version.");
         }
     }
+    
+    public static String redigerPrioritet(){
+        Scanner console = new Scanner(System.in);
+        System.out.println("Første prioritet:");
+        String s = console.nextLine();
+        System.out.println("Anden prioritet:");
+        s = s+console.nextLine();
+        System.out.println("Tredje prioritet:");
+        s = s+console.nextLine();
+        return s;
+
+    }
+    
+    public static String redigerResultat(){
+        Scanner console = new Scanner(System.in);
+        String s = "";
+        boolean done = false;
+        while (!done){
+            System.out.println("Indtast din tid i formattet hh:mm:ss");
+            s = console.nextLine();
+            String[] ssplit = s.split(":");
+                if (ssplit.length != 3){
+                    System.out.println("Du har ikke indtastet en korrekt tid");
+                }else{
+                    done = true;
+                }
+        }
+        done = false;
+        while (!done){
+            System.out.println("Indtast hvornår tiden var sat i formattet dd/mm/yy");
+            s = s+" "+console.nextLine();
+            String[] ssplit = s.split("/");
+                if (ssplit.length != 3){
+                    System.out.println("Du har ikke indtastet en korrekt tid");
+                }else{
+                    done = true;
+                }
+        }
+        
+        return s;
+
+    }
+    
 
     public static void OpretMedlem(boolean firstRun){
 
@@ -138,8 +187,7 @@ public class Menu {
             String ID = m1.getID();
             IDmax = parseInt(ID.substring(1, ID.length()));
         }
-
-        System.out.println("Medlem er oprettet");
+        
         System.out.println();
 
         Medlem nyt = null;
@@ -156,7 +204,6 @@ public class Menu {
             nyt.setFormand(true);
             String ID = nyt.getID();
             ID = ID.replace('M','F');
-             ID = ID.replace('E', 'F');
             nyt.setID(ID);
         }
         System.out.println();
