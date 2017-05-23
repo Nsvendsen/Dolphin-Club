@@ -120,7 +120,7 @@ if(!m.getSpærret()) {
         int kode = 0;
 
         if (firstRun) {
-            String ID = "DEAFAULTID01";
+            String ID = "DEFAULTID01";
             boolean done = false;
 
             while (!done) {
