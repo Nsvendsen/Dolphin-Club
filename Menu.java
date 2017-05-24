@@ -5,7 +5,7 @@
         import static java.lang.Integer.parseInt;
 
 public class Menu {
-
+        //Formands menuen
     public static void formandMenu() {
 
 
@@ -58,7 +58,7 @@ public class Menu {
 
         }
     }
-
+        //Bogholder menuen
     public static void bogholderMenu() {
 
         API.Rollanimation("Vælg følgende:", "1: Sene betalinger", "2: Register betaling", "3: Log af");
@@ -77,7 +77,7 @@ public class Menu {
             System.out.println("Kommer i en senere version.");
         }
     }
-
+        //træner menu
     public static void trænerMenu() {
 
         API.Rollanimation("Vælg følgende:", "1: Top 5", "2: Register resultat", "3: Log af");
@@ -97,7 +97,7 @@ public class Menu {
             System.out.println("Kommer i en senere version.");
         }
     }
-
+        //Elite menu
     public static void eliteMenu(Elite m) {
 
         API.Rollanimation("Vælg følgende:", "1: Register prioritet af træner", "2: Register resultat", "3: Log af");
@@ -109,10 +109,12 @@ public class Menu {
         char c = s.charAt(0);
         if (Character.getNumericValue(c) == 1 && s.length() == 1) {
             m.setTrænerPrioritet(redigerPrioritet());
-
+            System.out.println("Det er blevet gemt");
+            eliteMenu(m)
         }else if (Character.getNumericValue(c) == 2 && s.length() == 1) {
             m.setBedsteResultat(redigerResultat());
-
+            System.out.println("Det er blevet gemt");
+            eliteMenu(m)
         }else if (Character.getNumericValue(c) == 3 && s.length() == 1) {
 
             for (int i = 1; i < 20; i++) {
@@ -123,7 +125,7 @@ public class Menu {
             System.out.println("Kommer i en senere version.");
         }
     }
-
+        //Function til at ændre prioritet af træner for elitesvømmerne
     public static String redigerPrioritet(){
         Scanner console = new Scanner(System.in);
         System.out.println("Første prioritet:");
@@ -135,7 +137,7 @@ public class Menu {
         return s;
 
     }
-
+        //Function til at indsætte det bedste resultat for elitesvømmerne
     public static String redigerResultat(){
         Scanner console = new Scanner(System.in);
         String s = "";
@@ -166,7 +168,7 @@ public class Menu {
 
     }
 
-
+        //Helt generalt en function til at oprette medlem, den bliver brugt gennem formandsmenuen
     public static void OpretMedlem(boolean firstRun){
 
         String fornavn = RedigerFornavn();
@@ -181,7 +183,7 @@ public class Menu {
         boolean elite = RedigerElite();
         int IDmax = 1000;
 
-
+        //Hvis det ikke er første gang programmet køres, henter den det sidste ID der er blevet oprettet så dan kan oprette det næste.
         if(!firstRun) {
             Medlem m1 = Main.medlemmer.get(Main.medlemmer.size() - 1);
             String ID = m1.getID();
@@ -189,7 +191,7 @@ public class Menu {
         }
 
         System.out.println();
-
+        
         Medlem nyt = null;
         if (elite){
             String aktivdisciplin = redigerAktivDisciplin();
