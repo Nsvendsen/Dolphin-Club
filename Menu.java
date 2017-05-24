@@ -110,11 +110,11 @@ public class Menu {
         if (Character.getNumericValue(c) == 1 && s.length() == 1) {
             m.setTrænerPrioritet(redigerPrioritet());
             System.out.println("Det er blevet gemt");
-            eliteMenu(m)
+            eliteMenu(m);
         }else if (Character.getNumericValue(c) == 2 && s.length() == 1) {
             m.setBedsteResultat(redigerResultat());
             System.out.println("Det er blevet gemt");
-            eliteMenu(m)
+            eliteMenu(m);
         }else if (Character.getNumericValue(c) == 3 && s.length() == 1) {
 
             for (int i = 1; i < 20; i++) {
