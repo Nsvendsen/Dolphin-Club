@@ -53,7 +53,7 @@ if(!m.getSpærret()) {
         Menu.trænerMenu();
     } else if (m instanceof Elite) {
         System.out.println("Du er logget ind som elitemedlem: " + m.getFornavn() + " " + m.getEfternavn());
-        Menu.eliteMenu(m);
+        Menu.eliteMenu((Elite)m);
     } else {
         System.out.println("Du er logget ind som medlem: " + m.getFornavn() + " " + m.getEfternavn());
         System.out.println("Goddag, og velkommen til.");
